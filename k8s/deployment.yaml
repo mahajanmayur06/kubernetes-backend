@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: backend-ecommerce-deployment
+  labels:
+    app: backend-ecommerce
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: backend-ecommerce
+  template:
+    metadata:
+      labels:
+        app: backend-ecommerce
+    spec:
+      containers:
+        - name: backend-ecommerce
+          image: backend-ecommerce:latest
+          imagePullPolicy: Never
+          ports:
+            - containerPort: 5000
+          env:
+            - name: PORT
+              value: "5000"
+            - name: MONGO_URI
+              valueFrom:
+                secretKeyRef:
+                  name: backend-secrets
+                  key: mongo_uri
