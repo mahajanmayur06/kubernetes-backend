@@ -16,8 +16,8 @@ spec:
     spec:
       containers:
         - name: backend-ecommerce
-          image: backend-ecommerce:latest
-          imagePullPolicy: Never
+          image: mahmayur06/backend-ecomm:latest
+          imagePullPolicy: Always
           ports:
             - containerPort: 5000
           env:
